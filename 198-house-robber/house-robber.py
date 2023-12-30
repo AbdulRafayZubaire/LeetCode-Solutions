@@ -1,18 +1,15 @@
 class Solution:
 
-    def rob_dp(self, nums, i, memo=None):
-        if i < 0: return 0
-        if memo is None:
-            memo = {}
-        if i in memo: return memo[i]
+    def robber(self, nums, memo):
+        if len(nums) <= 0:
+            return 0
 
-        result = max(self.rob_dp(nums, i-2, memo)+ nums[i], self.rob_dp(nums, i-1, memo))
-        memo[i] = result
+        if tuple(nums) in memo:
+            return memo[tuple(nums)]
+
+        result = max(nums[0] + self.robber(nums[2:], memo), self.robber(nums[1:], memo))
+        memo[tuple(nums)] = result
         return result
 
-
-
     def rob(self, nums: List[int]) -> int:
-        return self.rob_dp(nums, len(nums)-1)
-
-        
+        return self.robber(nums, {})
