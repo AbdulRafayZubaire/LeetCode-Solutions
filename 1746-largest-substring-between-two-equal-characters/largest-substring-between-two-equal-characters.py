@@ -1,18 +1,10 @@
 class Solution:
     def maxLengthBetweenEqualCharacters(self, s: str) -> int:
 
-        char_index = {}
-        n = len(s)
-        flag = False
-        maxim = 0
-
-        for i in range(n):
-            char = s[i]
-            if char in char_index:
-                flag = True
-                distance = i - char_index[char] - 1
-                maxim = max(maxim, distance)
-            else:
-                char_index[char] = i
-
-        return -1 if not flag else maxim
+        res = -1
+        for i in range(len(s)):
+            for j in range(i + 1, len(s)):
+                if s[i] == s[j]:
+                    res = max(res, j - i - 1)
+        
+        return res
