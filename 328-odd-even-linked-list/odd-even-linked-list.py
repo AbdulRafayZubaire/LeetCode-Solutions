@@ -22,12 +22,7 @@ class Solution:
             last_odd = odd
             odd = odd.next
             even = even.next
-        
-        # if odd and odd.next:
-        #     last_odd = odd
-        #     odd.next = odd.next.next
-        # if even and even.next:
-        #     even.next = even.next.next
+
         if odd:
             last_odd = odd
         last_odd.next = even_ptr
