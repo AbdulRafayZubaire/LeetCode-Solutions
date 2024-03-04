@@ -7,5 +7,4 @@ class Solution:
             for j in range(i+1, len(nums)):
                 if nums[i] < nums[j]:
                     lst[i] = max(lst[i], 1 + lst[j])
-        print(lst)
         return max(lst)
