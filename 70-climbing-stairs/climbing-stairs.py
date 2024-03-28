@@ -1,15 +1,21 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
+        if n < 1:
+            return 0
+        
 
-        if n == 1 or n== 2 or n == 3:
-            return n
-        a = 1
-        b = 2
-        c = 0
-        for i in range(0, n-2):
-            c = a+b
-            a = b
-            b = c
-        return c
+        def dfs(i, n, memo):
 
+            if i == n:
+                return 1
+            if i > n:
+                return 0
+            if i in memo:
+                return memo[i]
+            
+            memo[i] = dfs(i+1, n, memo) + dfs(i+2, n, memo)
+            return memo[i]
+
+        return dfs(0, n, {})
+        
         
