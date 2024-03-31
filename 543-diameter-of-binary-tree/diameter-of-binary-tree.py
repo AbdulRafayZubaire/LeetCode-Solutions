@@ -10,14 +10,14 @@ class Solution:
         def height(root):
             nonlocal count
             if not root:
-                return -1
-            if not root.left and not root.right:
                 return 0
+            if not root.left and not root.right:
+                return 1
             
-            left = 1 + height(root.left)
-            right = 1 + height(root.right)
+            left = height(root.left)
+            right = height(root.right)
             count = max(left+right, count)
-            return max(left, right)
+            return 1 + max(left, right)
 
         height(root)
         return count 
