@@ -14,6 +14,4 @@ class Solution:
             memo[s] = False
             return False
 
-        # wordSet = set(wordDict)
-        # print(wordSet)
         return dfs(s, wordDict)
