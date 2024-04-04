@@ -1,15 +1,21 @@
 class Solution:
-
-    def robber(self, nums, memo):
-        if len(nums) <= 0:
-            return 0
-
-        if tuple(nums) in memo:
-            return memo[tuple(nums)]
-
-        result = max(nums[0] + self.robber(nums[2:], memo), self.robber(nums[1:], memo))
-        memo[tuple(nums)] = result
-        return result
-
     def rob(self, nums: List[int]) -> int:
-        return self.robber(nums, {})
+        
+        # dp = [0]*len(nums) + 1
+
+        # for i in range(len(nums)):
+
+        result = 0
+        def func(nums, memo):
+            if len(nums) <= 0:
+                return 0
+            if len(nums) == 1:
+                return nums[0]
+            if len(nums) in memo:
+                return memo[len(nums)]
+
+            res = max(nums[0] + func(nums[2:], memo), func(nums[1:], memo))
+            memo[len(nums)] = res
+            return memo[len(nums)]
+        return func(nums, {})
+            
